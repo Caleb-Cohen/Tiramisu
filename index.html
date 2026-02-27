@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiramisu Tracker</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #37352f;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 96px 120px;
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        padding: 48px 24px 80px;
+      }
+    }
+
+    /* Header */
+    .page-icon {
+      font-size: 78px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .page-title {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+      color: #37352f;
+    }
+
+    .page-description {
+      font-size: 16px;
+      color: #787774;
+      margin-bottom: 40px;
+      max-width: 520px;
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 40px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e3e2e0;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9b9a97;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #37352f;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .sort-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #9b9a97;
+      background: none;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+
+    .sort-btn:hover {
+      background: #f1f1ef;
+      color: #37352f;
+    }
+
+    .sort-btn.active {
+      color: #37352f;
+      background: #f1f1ef;
+    }
+
+    .sort-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .sort-direction {
+      font-size: 12px;
+    }
+
+    /* Table */
+    .table-container {
+      border: 1px solid #e3e2e0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead {
+      background: #f7f6f3;
+    }
+
+    th {
+      text-align: left;
+      padding: 8px 12px;
+      font-weight: 500;
+      font-size: 12px;
+      color: #9b9a97;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid #e3e2e0;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      transition: color 0.1s;
+    }
+
+    th:hover {
+      color: #37352f;
+    }
+
+    th.sorted {
+      color: #37352f;
+    }
+
+    th .sort-arrow {
+      font-size: 10px;
+      margin-left: 4px;
+      opacity: 0;
+      transition: opacity 0.1s;
+    }
+
+    th.sorted .sort-arrow,
+    th:hover .sort-arrow {
+      opacity: 1;
+    }
+
+    tr {
+      border-bottom: 1px solid #f1f1ef;
+      transition: background 0.1s;
+    }
+
+    tr:last-child {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: #f7f6f3;
+    }
+
+    td {
+      padding: 10px 12px;
+      vertical-align: top;
+    }
+
+    /* Column-specific styles */
+    .col-restaurant {
+      font-weight: 500;
+      min-width: 140px;
+    }
+
+    .col-address a {
+      color: #37352f;
+      text-decoration: none;
+      border-bottom: 1px solid #e3e2e0;
+      transition: border-color 0.15s;
+    }
+
+    .col-address a:hover {
+      border-color: #37352f;
+    }
+
+    .col-address {
+      min-width: 160px;
+      font-size: 13px;
+      color: #787774;
+    }
+
+    .col-rating {
+      white-space: nowrap;
+    }
+
+    .rating-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .rating-exceptional {
+      background: #dbeddb;
+      color: #2b593f;
+    }
+
+    .rating-great {
+      background: #d8e5f8;
+      color: #24456a;
+    }
+
+    .rating-good {
+      background: #fdecc8;
+      color: #5c4b1f;
+    }
+
+    .rating-mediocre {
+      background: #f3e0d7;
+      color: #6b3a2a;
+    }
+
+    .rating-poor {
+      background: #ffe2dd;
+      color: #6e3630;
+    }
+
+    .col-price {
+      white-space: nowrap;
+      color: #787774;
+      font-size: 13px;
+    }
+
+    .col-date {
+      white-space: nowrap;
+      color: #9b9a97;
+      font-size: 13px;
+    }
+
+    .col-notes {
+      color: #37352f;
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 300px;
+    }
+
+    /* Expanded row for notes */
+    .notes-row {
+      display: none;
+    }
+
+    .notes-row.expanded {
+      display: table-row;
+    }
+
+    .notes-row td {
+      padding: 0 12px 14px 12px;
+      background: #f7f6f3;
+      border-bottom: 1px solid #e3e2e0;
+    }
+
+    .notes-content {
+      font-size: 14px;
+      color: #37352f;
+      line-height: 1.6;
+      padding: 12px 16px;
+      background: #ffffff;
+      border-radius: 4px;
+      border: 1px solid #e3e2e0;
+    }
+
+    .notes-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9b9a97;
+      margin-bottom: 6px;
+    }
+
+    /* Toggle button */
+    .toggle-notes {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #9b9a97;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: inherit;
+      transition: background 0.1s, color 0.1s;
+    }
+
+    .toggle-notes:hover {
+      background: #f1f1ef;
+      color: #37352f;
+    }
+
+    /* Footer */
+    .page-footer {
+      margin-top: 48px;
+      padding-top: 16px;
+      border-top: 1px solid #f1f1ef;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #c4c3c0;
+      font-size: 12px;
+    }
+
+    .page-footer a {
+      color: #9b9a97;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .page-footer a:hover {
+      border-color: #9b9a97;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 64px 24px;
+      color: #9b9a97;
+    }
+
+    .empty-state .empty-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .empty-state p {
+      font-size: 14px;
+    }
+
+    /* Responsive table */
+    @media (max-width: 768px) {
+      .stats-bar {
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .table-container {
+        overflow-x: auto;
+      }
+
+      table {
+        min-width: 600px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="page-icon">🍰</div>
+    <h1 class="page-title">Tiramisu Tracker</h1>
+    <p class="page-description">A running log of every tiramisu I eat, rated honestly.</p>
+
+    <div class="stats-bar">
+      <div class="stat">
+        <span class="stat-label">Entries</span>
+        <span class="stat-value" id="stat-count">—</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Avg Rating</span>
+        <span class="stat-value" id="stat-avg">—</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Best</span>
+        <span class="stat-value" id="stat-best">—</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Avg Price</span>
+        <span class="stat-value" id="stat-price">—</span>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th data-sort="restaurant">Restaurant <span class="sort-arrow"></span></th>
+            <th data-sort="address">Address <span class="sort-arrow"></span></th>
+            <th data-sort="rating">Rating <span class="sort-arrow"></span></th>
+            <th data-sort="price">Price <span class="sort-arrow"></span></th>
+            <th data-sort="date">Date <span class="sort-arrow"></span></th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="entries-body">
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-footer">
+      <span>Data sourced from <a href="tiramisu.json">tiramisu.json</a></span>
+      <span id="last-updated"></span>
+    </div>
+  </div>
+
+  <script>
+    let entries = [];
+    let sortField = 'date';
+    let sortDir = 'desc';
+    const expandedRows = new Set();
+
+    function ratingClass(r) {
+      if (r >= 9) return 'rating-exceptional';
+      if (r >= 7.5) return 'rating-great';
+      if (r >= 6) return 'rating-good';
+      if (r >= 4) return 'rating-mediocre';
+      return 'rating-poor';
+    }
+
+    function formatDate(d) {
+      const date = new Date(d + 'T00:00:00');
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function sortEntries(data, field, dir) {
+      return [...data].sort((a, b) => {
+        let va = a[field], vb = b[field];
+        if (typeof va === 'string') va = va.toLowerCase();
+        if (typeof vb === 'string') vb = vb.toLowerCase();
+        if (va < vb) return dir === 'asc' ? -1 : 1;
+        if (va > vb) return dir === 'asc' ? 1 : -1;
+        return 0;
+      });
+    }
+
+    function renderStats(data) {
+      document.getElementById('stat-count').textContent = data.length;
+      if (data.length === 0) return;
+
+      const avg = data.reduce((s, e) => s + e.rating, 0) / data.length;
+      document.getElementById('stat-avg').textContent = avg.toFixed(1);
+
+      const best = data.reduce((top, e) => e.rating > top.rating ? e : top, data[0]);
+      document.getElementById('stat-best').textContent = best.restaurant;
+
+      const avgPrice = data.reduce((s, e) => s + e.price, 0) / data.length;
+      document.getElementById('stat-price').textContent = '$' + avgPrice.toFixed(0);
+    }
+
+    function renderTable(data) {
+      const tbody = document.getElementById('entries-body');
+
+      if (data.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6">
+              <div class="empty-state">
+                <div class="empty-icon">🍽️</div>
+                <p>No entries yet. Add your first tiramisu to tiramisu.json.</p>
+              </div>
+            </td>
+          </tr>`;
+        return;
+      }
+
+      const sorted = sortEntries(data, sortField, sortDir);
+
+      tbody.innerHTML = sorted.map(entry => {
+        const isExpanded = expandedRows.has(entry.id);
+        return `
+          <tr>
+            <td class="col-restaurant">${entry.restaurant}</td>
+            <td class="col-address"><a href="${entry.address_url}" target="_blank" rel="noopener">${entry.address}</a></td>
+            <td class="col-rating"><span class="rating-badge ${ratingClass(entry.rating)}">${entry.rating}</span></td>
+            <td class="col-price">$${entry.price}</td>
+            <td class="col-date">${formatDate(entry.date)}</td>
+            <td><button class="toggle-notes" onclick="toggleNotes(${entry.id})">${isExpanded ? 'Hide' : 'Show'}</button></td>
+          </tr>
+          <tr class="notes-row ${isExpanded ? 'expanded' : ''}" id="notes-${entry.id}">
+            <td colspan="6">
+              <div class="notes-label">Tasting Notes</div>
+              <div class="notes-content">${entry.notes}</div>
+            </td>
+          </tr>`;
+      }).join('');
+
+      // Update header sort indicators
+      document.querySelectorAll('th[data-sort]').forEach(th => {
+        th.classList.toggle('sorted', th.dataset.sort === sortField);
+        const arrow = th.querySelector('.sort-arrow');
+        arrow.textContent = th.dataset.sort === sortField ? (sortDir === 'asc' ? '↑' : '↓') : '↕';
+      });
+    }
+
+    function toggleNotes(id) {
+      if (expandedRows.has(id)) {
+        expandedRows.delete(id);
+      } else {
+        expandedRows.add(id);
+      }
+      renderTable(entries);
+    }
+
+    // Column header click to sort
+    document.querySelectorAll('th[data-sort]').forEach(th => {
+      th.addEventListener('click', () => {
+        const field = th.dataset.sort;
+        if (sortField === field) {
+          sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortField = field;
+          sortDir = field === 'rating' ? 'desc' : 'asc';
+        }
+        renderTable(entries);
+      });
+    });
+
+    // Load data
+    fetch('tiramisu.json')
+      .then(r => r.json())
+      .then(data => {
+        entries = data;
+        renderStats(data);
+        renderTable(data);
+        if (data.length > 0) {
+          const latest = data.reduce((a, b) => a.date > b.date ? a : b);
+          document.getElementById('last-updated').textContent = 'Last entry: ' + formatDate(latest.date);
+        }
+      })
+      .catch(() => {
+        document.getElementById('entries-body').innerHTML = `
+          <tr><td colspan="6">
+            <div class="empty-state">
+              <div class="empty-icon">⚠️</div>
+              <p>Could not load tiramisu.json</p>
+            </div>
+          </td></tr>`;
+      });
+  </script>
+</body>
+</html>
