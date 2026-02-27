@@ -1,9 +1,43 @@
 [
   {
     "id": 1,
+    "restaurant": "Osteria alle Testiere",
+    "address": "Calle del Mondo Novo, 5801, 30122 Venezia VE, Italy",
+    "address_url": "https://maps.app.goo.gl/VVa2CDquVyVDBWps6",
+    "restaurant_url": "http://www.osterialletestiere.it/",
+    "rating": 4.1,
+    "price": 14.00,
+    "date": "2024-09-07",
+    "notes": "Excellent flavor and consistency. A bit less structured than I typically prefer. Slightly heavy on the cocoa powder in the center, and the cream was lighter than I'd like, though these are subjective preferences, not technical faults. An amazing tiramisu."
+  },
+  {
+    "id": 2,
+    "restaurant": "Algiubagio",
+    "address": "Fondamente Nove, 5039, 30121 Venezia VE, Italy",
+    "address_url": "https://maps.app.goo.gl/aLSngX1FdzrAXZN57",
+    "restaurant_url": "https://www.algiubagio.net/menu/",
+    "rating": 1.8,
+    "price": 18.99,
+    "date": "2024-09-08",
+    "notes": "This tiramisu is not traditional, nor a good execution. The tiramisu is colorful balloons representing Banksy's Girl with Balloon. I found the colors to be distracting and mess with the perceived flavor, texture and consistency was not appealing."
+  },
+  {
+    "id": 3,
+    "restaurant": "Trattoria Bar Pontini",
+    "address": "Cannaregio, 1268, 30121 Venezia VE, Italy",
+    "address_url": "https://maps.app.goo.gl/NYpXyGctCS4wRnJr7",
+    "restaurant_url": "https://trattoria-pontini.res-menu.net/",
+    "rating": 4.4,
+    "price": 10.00,
+    "date": "2024-09-17",
+    "notes": "Large and exceptional Tiramisu. Consistency is perfect with excellent richness in the cream and balance with espresso."
+  },
+  {
+    "id": 4,
     "restaurant": "Paisan's Old World Deli & Catering",
     "address": "6550 Longley Ln Suite 110, Reno, NV 89511",
     "address_url": "https://maps.app.goo.gl/Wj2gmwd57etpthTY9",
+    "restaurant_url": "https://paisanscatering.com/",
     "rating": 3.25,
     "price": 4.99,
     "date": "2026-02-27",

@@ -51,8 +51,40 @@
     .page-description {
       font-size: 16px;
       color: #787774;
+      margin-bottom: 16px;
+      max-width: 620px;
+    }
+
+    .page-description a {
+      color: #787774;
+      border-bottom: 1px solid #c4c3c0;
+      text-decoration: none;
+      transition: border-color 0.15s;
+    }
+
+    .page-description a:hover {
+      border-color: #787774;
+    }
+
+    .rating-legend {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
       margin-bottom: 40px;
-      max-width: 520px;
+    }
+
+    .rating-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #9b9a97;
+    }
+
+    .rating-legend-item .rating-badge {
+      font-size: 11px;
+      padding: 1px 6px;
+      min-width: auto;
     }
 
     /* Stats bar */
@@ -199,6 +231,17 @@
     .col-restaurant {
       font-weight: 500;
       min-width: 140px;
+    }
+
+    .col-restaurant a {
+      color: #37352f;
+      text-decoration: none;
+      border-bottom: 1px solid #e3e2e0;
+      transition: border-color 0.15s;
+    }
+
+    .col-restaurant a:hover {
+      border-color: #37352f;
     }
 
     .col-address a {
@@ -389,7 +432,14 @@
   <div class="page">
     <div class="page-icon">🍰</div>
     <h1 class="page-title">Tiramisu Tracker</h1>
-    <p class="page-description">A running log of every tiramisu I eat, rated honestly.</p>
+    <p class="page-description">A running log of every tiramisu I eat, rated on technical execution — flavor, texture, consistency, espresso balance, and ladyfinger quality. Traditional preparation is preferred and scores higher; non-traditional interpretations are penalized. Scored on a compressed <a href="https://tabelog.com/en/" target="_blank" rel="noopener">Tabelog</a>-style scale where most will land in the 3.0–3.4 range.</p>
+
+    <div class="rating-legend">
+      <span class="rating-legend-item"><span class="rating-badge rating-exceptional">4.0+</span> Elite</span>
+      <span class="rating-legend-item"><span class="rating-badge rating-great">3.5–3.9</span> Excellent</span>
+      <span class="rating-legend-item"><span class="rating-badge rating-good">3.0–3.4</span> Good</span>
+      <span class="rating-legend-item"><span class="rating-badge rating-mediocre">&lt; 3.0</span> Below Average</span>
+    </div>
 
     <div class="stats-bar">
       <div class="stat">
@@ -435,7 +485,7 @@
 
   <script>
     let entries = [];
-    let sortField = 'date';
+    let sortField = 'rating';
     let sortDir = 'desc';
     const expandedRows = new Set();
 
@@ -498,7 +548,7 @@
         const isExpanded = expandedRows.has(entry.id);
         return `
           <tr>
-            <td class="col-restaurant">${entry.restaurant}</td>
+            <td class="col-restaurant">${entry.restaurant_url ? `<a href="${entry.restaurant_url}" target="_blank" rel="noopener">${entry.restaurant}</a>` : entry.restaurant}</td>
             <td class="col-address"><a href="${entry.address_url}" target="_blank" rel="noopener">${entry.address}</a></td>
             <td class="col-rating"><span class="rating-badge ${ratingClass(entry.rating)}">${entry.rating}</span></td>
             <td class="col-price">$${entry.price}</td>
