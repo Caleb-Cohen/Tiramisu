@@ -1,32 +1,46 @@
 [
   {
     "id": 1,
-    "restaurant": "Lilia",
-    "address": "567 Union Ave, Brooklyn, NY 11211",
-    "address_url": "https://maps.google.com/?q=567+Union+Ave,+Brooklyn,+NY+11211",
-    "rating": 9.2,
-    "price": 16,
-    "date": "2026-02-14",
-    "notes": "Mascarpone was impossibly light — almost mousse-like. Ladyfingers soaked perfectly, not soggy. Cocoa had a slight bitterness that balanced the sweetness. One of the best I've had."
+    "restaurant": "Osteria alle Testiere",
+    "address": "Calle del Mondo Novo, 5801, 30122 Venezia VE, Italy",
+    "address_url": "https://maps.app.goo.gl/VVa2CDquVyVDBWps6",
+    "restaurant_url": "http://www.osterialletestiere.it/",
+    "rating": 4.1,
+    "price": 14.00,
+    "date": "2024-09-07",
+    "notes": "Excellent flavor and consistency. A bit less structured than I typically prefer. Slightly heavy on the cocoa powder in the center, and the cream was lighter than I'd like, though these are subjective preferences, not technical faults. An amazing tiramisu."
   },
   {
     "id": 2,
-    "restaurant": "Carbone",
-    "address": "181 Thompson St, New York, NY 10012",
-    "address_url": "https://maps.google.com/?q=181+Thompson+St,+New+York,+NY+10012",
-    "rating": 7.5,
-    "price": 22,
-    "date": "2026-01-28",
-    "notes": "Presentation was beautiful. Flavor solid but the espresso soak was a touch weak — wanted more coffee punch. Cream layer was rich, maybe too sweet. Good, not transcendent."
+    "restaurant": "Algiubagio",
+    "address": "Fondamente Nove, 5039, 30121 Venezia VE, Italy",
+    "address_url": "https://maps.app.goo.gl/aLSngX1FdzrAXZN57",
+    "restaurant_url": "https://www.algiubagio.net/menu/",
+    "rating": 1.8,
+    "price": 18.99,
+    "date": "2024-09-08",
+    "notes": "This tiramisu is not traditional, nor a good execution. The tiramisu is colorful balloons representing Banksy's Girl with Balloon. I found the colors to be distracting and mess with the perceived flavor, texture and consistency was not appealing."
   },
   {
     "id": 3,
-    "restaurant": "L'Artusi",
-    "address": "228 W 10th St, New York, NY 10014",
-    "address_url": "https://maps.google.com/?q=228+W+10th+St,+New+York,+NY+10014",
-    "rating": 8.4,
-    "price": 18,
-    "date": "2026-01-10",
-    "notes": "Classic execution done right. Espresso was bold, ladyfingers had just the right give. Cocoa dusting was generous. Lost a point for slightly grainy mascarpone texture."
+    "restaurant": "Trattoria Bar Pontini",
+    "address": "Cannaregio, 1268, 30121 Venezia VE, Italy",
+    "address_url": "https://maps.app.goo.gl/NYpXyGctCS4wRnJr7",
+    "restaurant_url": "https://trattoria-pontini.res-menu.net/",
+    "rating": 4.4,
+    "price": 10.00,
+    "date": "2024-09-17",
+    "notes": "Large and exceptional Tiramisu. Consistency is perfect with excellent richness in the cream and balance with espresso."
+  },
+  {
+    "id": 4,
+    "restaurant": "Paisan's Old World Deli & Catering",
+    "address": "6550 Longley Ln Suite 110, Reno, NV 89511",
+    "address_url": "https://maps.app.goo.gl/Wj2gmwd57etpthTY9",
+    "restaurant_url": "https://paisanscatering.com/",
+    "rating": 3.25,
+    "price": 4.99,
+    "date": "2026-02-27",
+    "notes": "Good flavor and texture on the ladyfingers, creams richness and consistency held it back from a higher score."
   }
 ]
