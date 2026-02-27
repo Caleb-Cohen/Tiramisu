@@ -27,17 +27,17 @@ Then push. That's it.
 
 ## Schema
 
-| Field | Type | Description |
-|---|---|---|
-| `id` | number | Unique incrementing ID |
-| `restaurant` | string | Restaurant or location name |
-| `address` | string | Human-readable address |
-| `address_url` | string | Google Maps link |
-| `restaurant_url` | string | Restaurant website (optional) |
-| `rating` | number | 1–5 (decimals allowed, Tabelog-style) |
-| `price` | number | Price in USD |
-| `date` | string | ISO date (`YYYY-MM-DD`) |
-| `notes` | string | Tasting notes and rating justification |
+| Field            | Type   | Description                            |
+| ---------------- | ------ | -------------------------------------- |
+| `id`             | number | Unique incrementing ID                 |
+| `restaurant`     | string | Restaurant or location name            |
+| `address`        | string | Human-readable address                 |
+| `address_url`    | string | Google Maps link                       |
+| `restaurant_url` | string | Restaurant website (optional)          |
+| `rating`         | number | 1–5 (decimals allowed, Tabelog-style)  |
+| `price`          | number | Price in USD                           |
+| `date`           | string | ISO date (`YYYY-MM-DD`)                |
+| `notes`          | string | Tasting notes and rating justification |
 
 ## How I rate
 
@@ -47,19 +47,21 @@ Ratings focus on the technical execution of the tiramisu — flavor, texture, co
 
 Ratings use a compressed scale inspired by [Tabelog](https://tabelog.com/en/), Japan's largest restaurant review platform. On Tabelog, scores cluster tightly — most restaurants sit between 3.0 and 3.4, and anything above 3.5 is exceptional. A 4.0 is rare and signals elite quality. This approach avoids the grade inflation common in 10-point systems, where anything below a 7 feels like a failure.
 
-| Score | Meaning | Badge color |
-|---|---|---|
-| 4.0+ | Elite | Green |
-| 3.5–3.9 | Excellent | Blue |
-| 3.0–3.4 | Good | Yellow |
-| Below 3.0 | Average | Orange |
+| Score     | Meaning       | Badge color |
+| --------- | ------------- | ----------- |
+| 4.0+      | Elite         | Green       |
+| 3.5–3.9   | Excellent     | Blue        |
+| 3.0–3.4   | Good          | Yellow      |
+| Below 3.0 | Below Average | Orange      |
 
 ## Fetching from another site
 
 If you want to display this data on another website, fetch the raw JSON from GitHub:
 
 ```js
-const res = await fetch('https://raw.githubusercontent.com/Caleb-Cohen/Tiramisu/main/tiramisu.json');
+const res = await fetch(
+  "https://raw.githubusercontent.com/Caleb-Cohen/Tiramisu/main/tiramisu.json",
+);
 const entries = await res.json();
 ```
 
