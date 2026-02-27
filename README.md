@@ -1,6 +1,6 @@
 # Tiramisu Tracker
 
-A personal log of every tiramisu I eat, rated on a 1–10 scale.
+A personal log of every tiramisu I eat, rated on a Tabelog-style 1–5 scale.
 
 ## How it works
 
@@ -16,7 +16,7 @@ Add a new object to `tiramisu.json`:
   "restaurant": "Via Carota",
   "address": "51 Grove St, New York, NY 10014",
   "address_url": "https://maps.google.com/?q=51+Grove+St,+New+York,+NY+10014",
-  "rating": 8.8,
+  "rating": 4.4,
   "price": 17,
   "date": "2026-03-01",
   "notes": "Your tasting notes here."
@@ -33,20 +33,19 @@ Then push. That's it.
 | `restaurant` | string | Restaurant or location name |
 | `address` | string | Human-readable address |
 | `address_url` | string | Google Maps link |
-| `rating` | number | 1–10 (decimals allowed) |
+| `rating` | number | 1–5 (decimals allowed, Tabelog-style) |
 | `price` | number | Price in USD |
 | `date` | string | ISO date (`YYYY-MM-DD`) |
 | `notes` | string | Tasting notes and rating justification |
 
-## Rating scale
+## Rating scale (Tabelog-style)
 
 | Score | Meaning | Badge color |
 |---|---|---|
-| 9–10 | Exceptional | Green |
-| 7.5–8.9 | Great | Blue |
-| 6–7.4 | Good | Yellow |
-| 4–5.9 | Mediocre | Orange |
-| 1–3.9 | Poor | Red |
+| 4.0+ | Elite | Green |
+| 3.5–3.9 | Excellent | Blue |
+| 3.0–3.4 | Good | Yellow |
+| Below 3.0 | Average | Orange |
 
 ## Fetching from another site
 

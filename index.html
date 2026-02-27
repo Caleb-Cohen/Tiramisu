@@ -440,11 +440,10 @@
     const expandedRows = new Set();
 
     function ratingClass(r) {
-      if (r >= 9) return 'rating-exceptional';
-      if (r >= 7.5) return 'rating-great';
-      if (r >= 6) return 'rating-good';
-      if (r >= 4) return 'rating-mediocre';
-      return 'rating-poor';
+      if (r >= 4.0) return 'rating-exceptional';
+      if (r >= 3.5) return 'rating-great';
+      if (r >= 3.0) return 'rating-good';
+      return 'rating-mediocre';
     }
 
     function formatDate(d) {

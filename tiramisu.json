@@ -1,32 +1,12 @@
 [
   {
     "id": 1,
-    "restaurant": "Lilia",
-    "address": "567 Union Ave, Brooklyn, NY 11211",
-    "address_url": "https://maps.google.com/?q=567+Union+Ave,+Brooklyn,+NY+11211",
-    "rating": 9.2,
-    "price": 16,
-    "date": "2026-02-14",
-    "notes": "Mascarpone was impossibly light — almost mousse-like. Ladyfingers soaked perfectly, not soggy. Cocoa had a slight bitterness that balanced the sweetness. One of the best I've had."
-  },
-  {
-    "id": 2,
-    "restaurant": "Carbone",
-    "address": "181 Thompson St, New York, NY 10012",
-    "address_url": "https://maps.google.com/?q=181+Thompson+St,+New+York,+NY+10012",
-    "rating": 7.5,
-    "price": 22,
-    "date": "2026-01-28",
-    "notes": "Presentation was beautiful. Flavor solid but the espresso soak was a touch weak — wanted more coffee punch. Cream layer was rich, maybe too sweet. Good, not transcendent."
-  },
-  {
-    "id": 3,
-    "restaurant": "L'Artusi",
-    "address": "228 W 10th St, New York, NY 10014",
-    "address_url": "https://maps.google.com/?q=228+W+10th+St,+New+York,+NY+10014",
-    "rating": 8.4,
-    "price": 18,
-    "date": "2026-01-10",
-    "notes": "Classic execution done right. Espresso was bold, ladyfingers had just the right give. Cocoa dusting was generous. Lost a point for slightly grainy mascarpone texture."
+    "restaurant": "Paisan's Old World Deli & Catering",
+    "address": "6550 Longley Ln Suite 110, Reno, NV 89511",
+    "address_url": "https://maps.app.goo.gl/Wj2gmwd57etpthTY9",
+    "rating": 3.25,
+    "price": 4.99,
+    "date": "2026-02-27",
+    "notes": "Good flavor and texture on the ladyfingers, creams richness and consistency held it back from a higher score."
   }
 ]
